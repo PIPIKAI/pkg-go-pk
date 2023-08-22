@@ -1,2 +1,2 @@
 # pkg-go-pk
-golang pkg by mysel
+golang pkg by myself

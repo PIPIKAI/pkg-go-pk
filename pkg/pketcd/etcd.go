@@ -23,6 +23,10 @@ func NewEtcdClient(config clientv3.Config) (*EtcdClient, error) {
 	return &EtcdClient{client: cli, Kv: clientv3.KV(cli)}, nil
 }
 
+func (cli *EtcdClient) GetClient() *clientv3.Client {
+	return cli.client
+}
+
 func (cli *EtcdClient) SetNx(ctx context.Context, key, value string, ops ...clientv3.OpOption) (int, error) {
 	txnRes, err := cli.client.Txn(ctx).
 		If(clientv3.Compare(clientv3.CreateRevision(key), "=", "0")).
